@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>势·破空 — P0 三件套验证</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #e0d5c0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #container {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      border: 1px solid #333;
+    }
+    canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    #webgpu-canvas { z-index: 1; }
+    #skeleton-canvas { z-index: 2; }
+    video { display: none; }
+    #status {
+      position: absolute;
+      bottom: 12px; left: 16px;
+      z-index: 10;
+      font-size: 13px;
+      font-family: 'Courier New', monospace;
+      background: rgba(0,0,0,0.7);
+      padding: 6px 12px;
+      border-radius: 4px;
+      display: flex;
+      gap: 20px;
+    }
+    .status-item { display: flex; gap: 6px; align-items: center; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot.green { background: #4f8; }
+    .dot.red { background: #f44; }
+    .dot.yellow { background: #fa0; }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <canvas id="webgpu-canvas"></canvas>
+    <canvas id="skeleton-canvas"></canvas>
+    <video id="input-video" autoplay playsinline></video>
+    <div id="status">
+      <span class="status-item"><span class="dot yellow" id="dot-webgpu"></span> WebGPU</span>
+      <span class="status-item"><span class="dot yellow" id="dot-camera"></span> Camera</span>
+      <span class="status-item"><span class="dot yellow" id="dot-mediapipe"></span> MediaPipe</span>
+      <span class="status-item">FPS: <span id="fps-display">--</span></span>
+    </div>
+  </div>
+  <script type="module" src="./app/main.js"></script>
+</body>
+</html>
