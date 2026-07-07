@@ -46,10 +46,20 @@ export async function initRaymarch(gpuDevice, gpuContext, presentationFormat) {
   context = gpuContext;
   format = presentationFormat;
 
-  // 编译着色器
+  // 编译着色器并检查错误
   const shaderModule = device.createShaderModule({
     code: chaosShaderWGSL,
     label: 'chaos-sdf-shader',
+  });
+
+  // 异步获取编译信息 (调试用)
+  shaderModule.getCompilationInfo().then(info => {
+    for (const msg of info.messages) {
+      console.log(`[WGSL] ${msg.type}: ${msg.message} (line ${msg.lineNum}:${msg.linePos})`);
+    }
+    if (info.messages.length === 0) {
+      console.log('[WGSL] Shader 编译通过，无警告');
+    }
   });
 
   // Bind group layout
@@ -131,21 +141,24 @@ export function drawRaymarch(timestamp, mousePos, scrollZoom) {
   const cameraRadius = clamp(DEFAULT_CAMERA_RADIUS + scrollZoom, 2.0, 8.0);
 
   // === Uniform Buffer (复用，只写不重建) ===
+  // 布局与 chaos-sdf.wgsl Uniforms struct 对齐 (std140)
   const uniformData = new Float32Array(64);
-  uniformData[0] = seconds;                          // iTime
-  uniformData[1] = DEFAULT_STEP_COUNT;               // iStepCount
-  uniformData[2] = DEFAULT_NOISE_LAYERS;             // iNoiseLayers
-  uniformData[3] = DEFAULT_WARP_AMPLITUDE;           // iWarpAmplitude
-  uniformData[4] = width;                            // iResolution.x
-  uniformData[5] = height;                           // iResolution.y
-  uniformData[6] = mousePos.x;                       // iMouse.x
-  uniformData[7] = mousePos.y;                       // iMouse.y
-  uniformData[8] = cameraRadius;                     // iCameraRadius
-  uniformData[9] = 0.0;                              // _pad0
-  uniformData[10] = 0.0;                             // iCameraTarget.x
-  uniformData[11] = 0.0;                             // iCameraTarget.y
-  uniformData[12] = 0.0;                             // iCameraTarget.z
-  // 13-63: 预留 (P3 tear / P4 brush / color LUT)
+  uniformData[0]  = seconds;                          // iTime.x
+  uniformData[1]  = DEFAULT_STEP_COUNT;               // iTime.y
+  uniformData[2]  = DEFAULT_NOISE_LAYERS;             // iTime.z
+  uniformData[3]  = DEFAULT_WARP_AMPLITUDE;           // iTime.w
+  uniformData[4]  = width;                            // iResolution.x
+  uniformData[5]  = height;                           // iResolution.y
+  uniformData[6]  = mousePos.x;                       // iMouse.x
+  uniformData[7]  = mousePos.y;                       // iMouse.y
+  uniformData[8]  = cameraRadius;                     // iCameraRadius
+  uniformData[9]  = 0.0;                              // _pad0
+  // [10], [11] = implicit 8-byte padding (vec3f → 16-byte align)
+  uniformData[12] = 0.0;                              // iCameraTarget.x (offset 48)
+  uniformData[13] = 0.0;                              // iCameraTarget.y (offset 52)
+  uniformData[14] = 0.0;                              // iCameraTarget.z (offset 56)
+  uniformData[15] = 0.0;                              // _pad1
+  // [16..63] = 预留 (P3 tear / P4 brush / color LUT)
 
   device.queue.writeBuffer(uniformBuffer, 0, uniformData);
 
