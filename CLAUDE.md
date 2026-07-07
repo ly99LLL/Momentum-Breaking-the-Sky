@@ -166,7 +166,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 | A4 | 共享类型 + 常量 + 事件 | P0 | ✅ | src/shared/*.js | 2026-07-07 | 模块间契约就绪 |
 | A5 | 工程化配置 | P0 | ✅ | .gitignore/LICENSE/README/CONTRIBUTING/CHANGELOG/.github/ | 2026-07-07 | GitHub 仓库 + 专业标准文件 |
 | D1 | P0 三件套验证 | P0 | ✅ | index.html + main.js + webgpu-setup.js + camera-manager.js + mediapipe-runner.js | 2026-07-07 | WebGPU三角形+MediaPipe骨骼点 代码完成，浏览器验证待做 |
-| D2 | P1 混沌渲染 | P1 | ⬜ | src/frontend/render/ | — | Week 2-5 |
+| D2 | P1 混沌渲染 | P1 | ✅ | chaos-sdf.wgsl + raymarch-renderer.js + sdf-scene.js + webgpu-setup.js(改) + main.js(改) | 2026-07-07 | SDF噪声场景 + 鼠标Orbit + Vite构建通过 |
 | D3 | P2 身体驱动 | P1 | ⬜ | src/frontend/input/, state/ | — | Week 6-9 |
 
 ---
@@ -181,6 +181,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 | 2026-07-07 #2 | **架构完成**：完整技术架构文档(16节) + 目录结构 + shared/类型/常量/事件 + CLAUDE.md身份填充 | ➡️ P0 三件套验证：Tauri + WebGPU + MediaPipe 共存 | 📋 新会话先读：CLAUDE.md → docs/architecture.md → PRD.md §12.1 |
 | 2026-07-07 #3 | **工程化完成**：GitHub仓库(Momentum-Breaking-the-Sky) + .gitignore + MIT LICENSE + README(badges/开发指南) + CONTRIBUTING.md + CODE_OF_CONDUCT.md + CHANGELOG.md + .github/Issue/PR模板 + CLAUDE.md新增§2 GitHub同步规则 | ➡️ P0 三件套验证 | 📋 仓库地址：https://github.com/ly99LLL/Momentum-Breaking-the-Sky |
 | 2026-07-07 #4 | **P0 三件套代码完成**：index.html 入口 + app/main.js 生命周期 + webgpu-setup.js(彩色三角形) + camera-manager.js(摄像头) + mediapipe-runner.js(骨骼点) + vite.config.js + package.json + npm依赖(vite/@mediapipe/tasks-vision)。Rust未安装故Tauri壳暂缓，前端版可独立在浏览器验证 | ➡️ 浏览器验证三件套共存 → P1 混沌渲染 或 安装Rust集成Tauri | 📋 `npm run dev` → http://localhost:3000 查看效果 |
+| 2026-07-07 #5 | **P1 混沌渲染完成**：chaos-sdf.wgsl (227行 FBM+DomainWarping+Raymarch) + raymarch-renderer.js (200行 全屏Quad+Uniform管理+鼠标Orbit) + sdf-scene.js (125行 场景参数+阶段映射预留) + webgpu-setup.js 新增getter导出 + main.js 集成raymarch+鼠标追踪。Vite构建通过(12模块 0错误)。GitHub推送失败(网络不通)待后续push | ➡️ P2 身体驱动：MediaPipe关键点 → 场景参数 → 驱散混沌涟漪 | 📋 P2前需先验证P1浏览器效果：`npx vite dev` → localhost:3000 |
 
 ---
 
