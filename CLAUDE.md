@@ -165,7 +165,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 | A3 | 目录结构创建 | P0 | ✅ | src/ 全部子目录 | 2026-07-07 | 按规范搭建骨架 |
 | A4 | 共享类型 + 常量 + 事件 | P0 | ✅ | src/shared/*.js | 2026-07-07 | 模块间契约就绪 |
 | A5 | 工程化配置 | P0 | ✅ | .gitignore/LICENSE/README/CONTRIBUTING/CHANGELOG/.github/ | 2026-07-07 | GitHub 仓库 + 专业标准文件 |
-| D1 | P0 三件套验证 | P0 | ⬜ | Tauri + WebGPU + MediaPipe | — | **下次开发入口** |
+| D1 | P0 三件套验证 | P0 | ✅ | index.html + main.js + webgpu-setup.js + camera-manager.js + mediapipe-runner.js | 2026-07-07 | WebGPU三角形+MediaPipe骨骼点 代码完成，浏览器验证待做 |
 | D2 | P1 混沌渲染 | P1 | ⬜ | src/frontend/render/ | — | Week 2-5 |
 | D3 | P2 身体驱动 | P1 | ⬜ | src/frontend/input/, state/ | — | Week 6-9 |
 
@@ -180,6 +180,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 | 2026-07-07 #1 | 初始化项目骨架：目录结构 + CLAUDE.md + PRD模板 + 架构模板 | 用户填写 PRD.md | — |
 | 2026-07-07 #2 | **架构完成**：完整技术架构文档(16节) + 目录结构 + shared/类型/常量/事件 + CLAUDE.md身份填充 | ➡️ P0 三件套验证：Tauri + WebGPU + MediaPipe 共存 | 📋 新会话先读：CLAUDE.md → docs/architecture.md → PRD.md §12.1 |
 | 2026-07-07 #3 | **工程化完成**：GitHub仓库(Momentum-Breaking-the-Sky) + .gitignore + MIT LICENSE + README(badges/开发指南) + CONTRIBUTING.md + CODE_OF_CONDUCT.md + CHANGELOG.md + .github/Issue/PR模板 + CLAUDE.md新增§2 GitHub同步规则 | ➡️ P0 三件套验证 | 📋 仓库地址：https://github.com/ly99LLL/Momentum-Breaking-the-Sky |
+| 2026-07-07 #4 | **P0 三件套代码完成**：index.html 入口 + app/main.js 生命周期 + webgpu-setup.js(彩色三角形) + camera-manager.js(摄像头) + mediapipe-runner.js(骨骼点) + vite.config.js + package.json + npm依赖(vite/@mediapipe/tasks-vision)。Rust未安装故Tauri壳暂缓，前端版可独立在浏览器验证 | ➡️ 浏览器验证三件套共存 → P1 混沌渲染 或 安装Rust集成Tauri | 📋 `npm run dev` → http://localhost:3000 查看效果 |
 
 ---
 
