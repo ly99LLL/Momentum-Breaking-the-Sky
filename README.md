@@ -103,8 +103,8 @@
 - WebView2 Runtime (Windows 11 已内置)
 
 # 克隆与安装
-git clone https://github.com/ly99LLL/mediaart.git
-cd mediaart
+git clone https://github.com/ly99LLL/Momentum-Breaking-the-Sky.git
+cd Momentum-Breaking-the-Sky
 npm install
 ```
 
