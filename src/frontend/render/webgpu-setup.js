@@ -205,3 +205,27 @@ export function getWebGPUStatus() {
     vendor: device ? '见控制台 log' : 'N/A',
   };
 }
+
+/**
+ * 获取 GPUDevice (供其他渲染模块复用)
+ * @returns {GPUDevice|null}
+ */
+export function getDevice() {
+  return device;
+}
+
+/**
+ * 获取 GPUCanvasContext (供其他渲染模块复用)
+ * @returns {GPUCanvasContext|null}
+ */
+export function getContext() {
+  return context;
+}
+
+/**
+ * 获取 presentationFormat (供其他渲染模块复用)
+ * @returns {GPUTextureFormat|null}
+ */
+export function getFormat() {
+  return presentationFormat;
+}
