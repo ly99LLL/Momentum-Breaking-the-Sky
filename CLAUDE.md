@@ -25,7 +25,7 @@
 - 禁止攒多个修改一次性提交——每次原子改动对应一个 commit
 - Commit 消息格式：`[模块名] 做了什么`，如 `[docs] 更新架构文档`
 - Push 之前确保当前分支不落后于远程（先 pull 如有冲突）
-- 远程地址：`origin` → `https://github.com/ly99LLL/Momentum-Breaking-the-Sky.git`
+- 远程地址：`origin` → `git@github.com:ly99LLL/Momentum-Breaking-the-Sky.git` (SSH)
 
 ### 工作流
 ```
