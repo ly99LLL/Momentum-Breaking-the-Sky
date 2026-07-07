@@ -13,10 +13,28 @@
 | **一句话描述** | 双击即开的.exe桌面应用——用笔记本摄像头追踪身体动作，双手蓄力撕裂SDF数学混沌空间，生成数字狂草拓片 |
 | **技术栈** | Tauri 2.x (Rust) + WebGPU (WGSL) + MediaPipe Web (JS) + Web Audio API + Vanilla JS + Canvas |
 | **当前阶段** | 架构设计（P0 三件套验证待启动） |
+| **GitHub 仓库** | https://github.com/ly99LLL/Momentum-Breaking-the-Sky |
+| **默认分支** | master |
 
 ---
 
-## 2. 目录规范（强制 · 零容忍）
+## 2. GitHub 同步（强制 · 每次修改必须推送）
+
+### 纪律
+- **每一步代码修改完成后，立即 `git add` + `git commit` + `git push`**
+- 禁止攒多个修改一次性提交——每次原子改动对应一个 commit
+- Commit 消息格式：`[模块名] 做了什么`，如 `[docs] 更新架构文档`
+- Push 之前确保当前分支不落后于远程（先 pull 如有冲突）
+- 远程地址：`origin` → `https://github.com/ly99LLL/Momentum-Breaking-the-Sky.git`
+
+### 工作流
+```
+修改代码 → git add <文件> → git commit -m "[模块] 描述" → git push
+```
+
+---
+
+## 3. 目录规范（强制 · 零容忍）
 
 ```
 src/hardware/     ← 嵌入式代码（ESP32 / Arduino / 树莓派）
@@ -39,7 +57,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 
 ---
 
-## 3. 编码规范（强制 · 每次遵守）
+## 4. 编码规范（强制 · 每次遵守）
 
 ### 通用纪律
 1. **单文件 ≤ 300 行**。超过必须拆分为多个文件，每个文件单一职责。
@@ -61,7 +79,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 
 ---
 
-## 4. PRD 驱动工作流（强制 · 不可跳过）
+## 5. PRD 驱动工作流（强制 · 不可跳过）
 
 > 本项目的开发节奏由 PRD 驱动。每次会话必须严格遵循四阶段流程。
 
@@ -113,7 +131,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 
 ---
 
-## 5. 上下文管理协议（强制）
+## 6. 上下文管理协议（强制）
 
 > 当 Token 即将耗尽或会话即将结束时，必须执行以下操作：
 
@@ -136,7 +154,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 
 ---
 
-## 6. 当前进度
+## 7. 当前进度
 
 > 状态：⬜ 未开始 | 🔄 进行中 | ✅ 完成 | ⏸️ 阻塞 | ❌ 放弃
 
@@ -146,13 +164,14 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 | A2 | 技术架构文档 | P0 | ✅ | docs/architecture.md | 2026-07-07 | 完整架构：分层/模块/接口/管线/状态机 |
 | A3 | 目录结构创建 | P0 | ✅ | src/ 全部子目录 | 2026-07-07 | 按规范搭建骨架 |
 | A4 | 共享类型 + 常量 + 事件 | P0 | ✅ | src/shared/*.js | 2026-07-07 | 模块间契约就绪 |
+| A5 | 工程化配置 | P0 | ✅ | .gitignore/LICENSE/README/CONTRIBUTING/CHANGELOG/.github/ | 2026-07-07 | GitHub 仓库 + 专业标准文件 |
 | D1 | P0 三件套验证 | P0 | ⬜ | Tauri + WebGPU + MediaPipe | — | **下次开发入口** |
 | D2 | P1 混沌渲染 | P1 | ⬜ | src/frontend/render/ | — | Week 2-5 |
 | D3 | P2 身体驱动 | P1 | ⬜ | src/frontend/input/, state/ | — | Week 6-9 |
 
 ---
 
-## 7. 会话日志
+## 8. 会话日志
 
 > 每次会话结束更新，新会话启动时自动读取。
 
@@ -160,6 +179,7 @@ scripts/          ← 构建 / 部署 / 数据迁移等一次性脚本
 |------|----------|--------|------|
 | 2026-07-07 #1 | 初始化项目骨架：目录结构 + CLAUDE.md + PRD模板 + 架构模板 | 用户填写 PRD.md | — |
 | 2026-07-07 #2 | **架构完成**：完整技术架构文档(16节) + 目录结构 + shared/类型/常量/事件 + CLAUDE.md身份填充 | ➡️ P0 三件套验证：Tauri + WebGPU + MediaPipe 共存 | 📋 新会话先读：CLAUDE.md → docs/architecture.md → PRD.md §12.1 |
+| 2026-07-07 #3 | **工程化完成**：GitHub仓库(Momentum-Breaking-the-Sky) + .gitignore + MIT LICENSE + README(badges/开发指南) + CONTRIBUTING.md + CODE_OF_CONDUCT.md + CHANGELOG.md + .github/Issue/PR模板 + CLAUDE.md新增§2 GitHub同步规则 | ➡️ P0 三件套验证 | 📋 仓库地址：https://github.com/ly99LLL/Momentum-Breaking-the-Sky |
 
 ---
 
